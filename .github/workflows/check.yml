@@ -19,7 +19,7 @@ name: Check
 on: [push]
 jobs:
   build:
-    name: Build
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
