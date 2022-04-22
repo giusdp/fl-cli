@@ -15,22 +15,17 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-name: Check
-on: [push]
-jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: License
-        uses: apache/skywalking-eyes@main
-      - name: Install Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: '>=1.18.0'
-      - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v3.1.0
-      - name: Test
-        run: go test -v -cover ./...
+repos:
+- hooks:
+  - id: commitizen
+    stages:
+    - commit-msg
+  repo: https://github.com/commitizen-tools/commitizen
+  rev: v2.23.0
+
+- repo: https://github.com/dnephin/pre-commit-golang
+  rev: master
+  hooks:
+    - id: go-fmt
+    - id: go-vet
+    - id: go-mod-tidy

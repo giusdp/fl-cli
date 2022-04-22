@@ -1,3 +1,4 @@
+
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -15,22 +16,8 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-name: Check
-on: [push]
-jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: License
-        uses: apache/skywalking-eyes@main
-      - name: Install Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: '>=1.18.0'
-      - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v3.1.0
-      - name: Test
-        run: go test -v -cover ./...
+[tool]
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.1"
+tag_format = "$version"
